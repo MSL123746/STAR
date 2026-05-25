@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+# Updated: 2026-05-25
+
 from io import BytesIO
 
 import streamlit as st
@@ -101,7 +103,7 @@ html, body, [class*="css"] {
 
 .stTextArea textarea {
     background: var(--field-bg) !important;
-    color: #000000 !important;
+    color: var(--field-text) !important;
     border: 1px solid var(--field-border) !important;
     border-radius: 4px !important;
     box-shadow: none !important;
@@ -231,6 +233,9 @@ def create_docx_bytes(answer_text: str) -> bytes:
     return buffer.read()
 
 
+FIELD_CHAR_LIMIT = 500
+
+
 st.markdown(APP_CSS, unsafe_allow_html=True)
 st.markdown(
     '<div class="header"><span class="header-icon">⭐</span><span>AI-STAR Interview Prep | Behavioral Question &amp; Answer Builder</span></div>',
@@ -245,21 +250,51 @@ with left_col:
         '<div class="help-text">Enter the behavioral-based question you want to answer (e.g., "Tell me about a time you faced a difficult challenge and how you handled it").</div>',
         unsafe_allow_html=True,
     )
-    question = st.text_area("Behavioral Question", height=74, placeholder="", label_visibility="collapsed")
+    question = st.text_area(
+        "Behavioral Question",
+        height=74,
+        placeholder="Enter text (max 500 characters)",
+        label_visibility="collapsed",
+        max_chars=FIELD_CHAR_LIMIT,
+    )
 
     st.markdown('<div class="block-label">Craft Your STAR Narrative</div>', unsafe_allow_html=True)
 
     st.markdown('<div class="help-text"><strong>(S) Situation (Background &amp; Context)</strong><br/>Describe the specific situation where the challenge occurred. (Where, When, Who was involved?)</div>', unsafe_allow_html=True)
-    situation = st.text_area("Situation", height=82, placeholder="", label_visibility="collapsed")
+    situation = st.text_area(
+        "Situation",
+        height=82,
+        placeholder="Enter text (max 500 characters)",
+        label_visibility="collapsed",
+        max_chars=FIELD_CHAR_LIMIT,
+    )
 
     st.markdown('<div class="help-text"><strong>(T) Task (The Responsibility &amp; Goal)</strong><br/>Define the specific challenge or task you needed to address. What was your main objective?</div>', unsafe_allow_html=True)
-    task = st.text_area("Task", height=82, placeholder="", label_visibility="collapsed")
+    task = st.text_area(
+        "Task",
+        height=82,
+        placeholder="Enter text (max 500 characters)",
+        label_visibility="collapsed",
+        max_chars=FIELD_CHAR_LIMIT,
+    )
 
     st.markdown('<div class="help-text"><strong>(A) Action (Detailed Steps taken)</strong><br/>Outline the specific steps you took to tackle the challenge. (Your technical maneuvers and leadership actions.)</div>', unsafe_allow_html=True)
-    action = st.text_area("Action", height=96, placeholder="", label_visibility="collapsed")
+    action = st.text_area(
+        "Action",
+        height=96,
+        placeholder="Enter text (max 500 characters)",
+        label_visibility="collapsed",
+        max_chars=FIELD_CHAR_LIMIT,
+    )
 
     st.markdown('<div class="help-text"><strong>(R) Result (The Outcome &amp; Impact)</strong><br/>Describe the final outcome and the value delivered. (Quantify the success and lasting stability.)</div>', unsafe_allow_html=True)
-    result = st.text_area("Result", height=96, placeholder="", label_visibility="collapsed")
+    result = st.text_area(
+        "Result",
+        height=96,
+        placeholder="Enter text (max 500 characters)",
+        label_visibility="collapsed",
+        max_chars=FIELD_CHAR_LIMIT,
+    )
 
 with right_col:
     st.markdown('<div class="right-title">Your STAR Narrative</div>', unsafe_allow_html=True)
